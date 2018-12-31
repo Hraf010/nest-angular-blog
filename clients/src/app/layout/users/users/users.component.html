@@ -1,0 +1,45 @@
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <h1><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Users<small>Manage Site Users</small></h1>
+      </div>
+      <div class="col-md-2" style=" margin-top: 21px;">
+        <button class="btn btn-primary" (click)="newUser()">New User</button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="row">
+  <div class="col-md-3">
+    <div class="list-group">
+      <a href="index.html" class="list-group-item active main-color-bg">
+        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
+      </a>
+     
+      <a  routerLink="/posts" class="list-group-item"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Posts <span class="badge">100</span></a>
+      <a  routerLink="/users" class="list-group-item"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users <span class="badge">{{numberUsers}}</span></a>
+    </div>
+  </div>
+  <div class="col-md-9" >
+      <!-- Website Overview -->
+          <table class="table table-striped table-hover" *ngIf="showUsers">
+                <tr>
+                  <th></th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th></th>
+                </tr>
+                <tr *ngFor="let user of users; let i = index">
+                  <td><img class="media-object dp img-circle" src="{{user.imageUrl}}" style="width: 50px;height:50px;"></td>
+                  <td>{{user.firstName}}</td>
+                  <td>{{user.lastName}}</td>
+                  <td>{{user.email}}</td>
+                  <td><button class="btn btn-primary" (click)="OnDetailClick(user)">Details</button><button class="btn btn-danger" (click)="onDeleteD(user)">Delete</button></td>
+                </tr>
+              </table>
+              <app-user-detail *ngIf="showDetail" (clickDelete)="onDeleteD($event)" (clickRetourne)="onRetourne()" [user]="UserSelected"></app-user-detail>
+              <app-user-add *ngIf="showForm" (addExit)="onExit()"></app-user-add>
+            </div>
+  

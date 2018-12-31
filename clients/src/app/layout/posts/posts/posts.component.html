@@ -1,0 +1,44 @@
+<table class="table table-striped" [mfData]="posts" #mf="mfDataTable" [mfRowsOnPage]="20">
+  <thead>
+  <tr>
+    <th style="width: 20%">
+      <mfDefaultSorter by="name">titre</mfDefaultSorter>
+    </th>
+    <th style="width: 20%">
+      <mfDefaultSorter by="email">Image</mfDefaultSorter>
+    </th>
+    <th style="width: 50%">
+      <mfDefaultSorter by="email">Contenu</mfDefaultSorter>
+    </th>
+    <th style="width: 10%">
+      <mfDefaultSorter by="date">Date</mfDefaultSorter>
+    </th>
+    <th style="width: 10%">
+      <mfDefaultSorter by="age">Actions</mfDefaultSorter>
+    </th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of mf.data">
+    <td>{{item.titre}}</td>
+    <td><img src="{{item.img}}" height="100" width="100" alt="" srcset=""></td>
+    <td>{{item.data}}</td>
+    <td>{{item.date}}</td>
+    <td class="text-right">
+      <div class="d-flex flex-row">
+        <button mdbBtn type="button" color="danger" size="sm" rounded="true" (click)="delete(item)" mdbWavesEffect>
+          Delete
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="4">
+      <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+    </td>
+  </tr>
+  </tfoot>
+</table>
